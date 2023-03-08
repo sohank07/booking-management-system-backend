@@ -1,6 +1,7 @@
 package com.se.bookingmanagementsystembackend.apis;
 
 import com.se.bookingmanagementsystembackend.business.domain.user.User;
+import com.se.bookingmanagementsystembackend.business.domain.user.UserLogin;
 import com.se.bookingmanagementsystembackend.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -11,21 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/api/v1/users/")
-public class UserAPI {
-
+@RequestMapping("/api/v1/login/")
+public class UserLoginAPI {
     private UserService userService;
 
     @PostMapping
-    public User registerUser(@RequestBody @Valid User user){
-        System.out.println(user);
-        return userService.saveUser(user);
+    public User authenticateUser(@RequestBody @Valid UserLogin userLogin){
+        System.out.println(userLogin.getEmail());
+        System.out.println("Hello Sohan");
+        return userService.loadUserByUsername(userLogin);
     }
-
-    @PostMapping("update/")
-    public User updateUser(@RequestBody @Valid User user){
-        return userService.updateUser(user);
-    }
-
 }
-
