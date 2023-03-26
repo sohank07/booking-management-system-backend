@@ -1,13 +1,13 @@
 package com.se.bookingmanagementsystembackend.apis;
 
 import com.se.bookingmanagementsystembackend.business.domain.user.User;
+import com.se.bookingmanagementsystembackend.repository.UserRepository;
 import com.se.bookingmanagementsystembackend.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserAPI {
 
     private UserService userService;
-
+    private UserRepository userRepository;
+    @GetMapping
+    public List<User> findAll(){
+        return userRepository.findAll();
+    }
     @PostMapping
     public User registerUser(@RequestBody @Valid User user){
         System.out.println(user);

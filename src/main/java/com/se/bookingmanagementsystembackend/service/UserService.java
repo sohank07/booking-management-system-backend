@@ -29,10 +29,13 @@ public class UserService {
         if (!userOptional.isPresent()) {
             return userRepository.save(user);
         } else {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User Already Registered");
+            throw new IllegalStateException("User already registered.");
         }
     }
 
+    public UserRepository findAllUsers(){
+        return userRepository;
+    }
     public User loadUserByUsername(UserLogin userLogin){
         Optional<User> authenticateUser = userRepository.findByEmail(userLogin.getEmail());
         System.out.println("Hello from Service!!");
