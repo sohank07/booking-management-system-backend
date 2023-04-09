@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -28,6 +30,9 @@ public class BookingServiceImplementation implements BookingService{
 
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    private PaymentServiceImplementation paymentService;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -46,6 +51,7 @@ public class BookingServiceImplementation implements BookingService{
     @Override
     public ResponseEntity<String> createBooking(Booking booking, int hotelId) {
         Optional<Hotel> optionalHotel = hotelRepository.findById(hotelId);
+
         if (optionalHotel.isPresent()) {
             Hotel hotel = optionalHotel.get();
 
@@ -58,11 +64,11 @@ public class BookingServiceImplementation implements BookingService{
                 hotel.setAvailable(false);
             }
 
-            System.out.println("YoYo!!");
-            //hotelRepository.save(hotel);
             bookingRepository.save(booking);
 
-            System.out.println("Yo!");
+            LocalDateTime currentDate = LocalDateTime.now();
+            BigDecimal amount = BigDecimal.valueOf(hotel.getPriceRange() * (int)Math.ceil(booking.getNumGuests()/2.0));
+            paymentService.createPayment(booking, amount, currentDate, true);
             Long userId = booking.getUser().getId();
 
             List<String> userDetails = getUserDetails(userId);
