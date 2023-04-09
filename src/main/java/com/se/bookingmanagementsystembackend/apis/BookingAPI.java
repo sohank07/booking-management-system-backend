@@ -7,6 +7,7 @@ import com.se.bookingmanagementsystembackend.repository.HotelRepository;
 import com.se.bookingmanagementsystembackend.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,27 +45,21 @@ public class BookingAPI {
 
     @PostMapping("/{hotelId}/bookings")
     public ResponseEntity<String> bookHotel(@PathVariable int hotelId, @RequestBody Booking booking) {
-        Optional<Hotel> optionalHotel = hotelRepository.findById(hotelId);
-        if (optionalHotel.isPresent()) {
-            Hotel hotel = optionalHotel.get();
-
-            int availableRooms = hotel.getNumRooms() - (int)Math.ceil(booking.getNumGuests()/2.0);
-            System.out.println(availableRooms);
-            if (availableRooms >= 0) {
-                hotel.setNumRooms(availableRooms);
-                if (availableRooms == 0) {
-                    hotel.setAvailable(false);
-                }
-                hotelRepository.save(hotel);
-                Booking savedBooking = bookingRepository.save(booking);
-                return ResponseEntity.ok("Booking Confirmed");
-            } else {
-                return ResponseEntity.badRequest().body("Insufficient rooms available");
-            }
-        } else {
-            return ResponseEntity.notFound().build();
+        try {
+            return bookingService.createBooking(booking, hotelId);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Insufficient rooms available");
         }
     }
 
+    @PostMapping("/{hotelId}/bookings/check-out")
+    public ResponseEntity<String> guestCheckOut(@RequestBody Booking booking, @PathVariable int hotelId) {
+        try {
+            bookingService.guestCheckOut(booking, hotelId);
+            return ResponseEntity.ok("Rooms marked available after successfull check-out!");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred while checking out");
+        }
+    }
 
 }

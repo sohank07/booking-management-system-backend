@@ -13,8 +13,10 @@ public interface BookingService {
     List<Booking> findAll();
 
     @Transactional
-    public void createBooking(Booking booking, int hotelId);
+    public ResponseEntity<String> createBooking(Booking booking, int hotelId);
 
-    public ResponseEntity<Booking> createBooking(int hotelId, Booking booking);
+    //public ResponseEntity<Booking> createBooking(int hotelId, Booking booking);
+
+    public ResponseEntity<String> guestCheckOut(Booking booking, int hotelId);
 }
 

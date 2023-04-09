@@ -13,8 +13,11 @@ public interface HotelService {
 
     List<Booking> getAllBookingsForHotel(int hotelId);
 
+
     List<Hotel> getHotelByCity(String city);
     Hotel saveHotel(Hotel hotel);
+
+
     void deleteHotel(int id);
 
     Hotel getHotelById(int id);
