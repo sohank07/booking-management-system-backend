@@ -1,13 +1,13 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.0.2'
+	id 'org.springframework.boot' version '2.7.4'
 	id 'io.spring.dependency-management' version '1.1.0'
-	id "com.microsoft.azure.azurewebapp" version "1.1.0"
+//	id "com.microsoft.azure.azurewebapp" version "1.1.0"
 }
 
 group = 'com.se'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '1.8'
 
 configurations {
 	compileOnly {
@@ -27,7 +27,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'org.mindrot:jbcrypt:0.4'
 	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
@@ -36,15 +35,15 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-azurewebapp {
-	subscription = 'afe3d43a-3f23-479f-9455-b71f92b712e6'
-	resourceGroup = 'booking-management-system-backend'
-	appName = 'hoosierhotels-backend'
-	pricingTier = 'Basic B1'
-	region = 'East US'
-	runtime {
-		os = 'Linux'
-		webContainer = 'Tomcat 9.0'
-		javaVersion = 'Java 17'
-	}
-}
+//azurewebapp {
+//	subscription = 'afe3d43a-3f23-479f-9455-b71f92b712e6'
+//	resourceGroup = 'booking-management-system-backend'
+//	appName = 'hotel-bms-backend'
+//	pricingTier = 'Basic B1'
+//	region = 'East US'
+//	runtime {
+//		os = 'Linux'
+//		webContainer = 'Tomcat 9.0'
+//		javaVersion = 'Java 17'
+//	}
+//}
