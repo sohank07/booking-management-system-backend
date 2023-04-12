@@ -1,4 +1,4 @@
-package com.se.bookingmanagementsystembackend.handler;
+package com.se.bookingmanagementsystembackend.apis.handler;
 
 public class ResourceNotFoundException extends RuntimeException {
 
