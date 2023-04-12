@@ -1,0 +1,1 @@
+web: java -jar build/libs/booking-management-system-backend-0.0.1-SNAPSHOT.jar
