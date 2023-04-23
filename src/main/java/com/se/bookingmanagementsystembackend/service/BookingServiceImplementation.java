@@ -80,7 +80,7 @@ public class BookingServiceImplementation implements BookingService{
             LocalDate checkOutDate = booking.getCheckOutDate();
             int numberOfGuests = booking.getNumGuests();
             Long bookingConfirmationId = booking.getId();
-            String emailBody = "Dear " + userName + ",\n\nYour booking has been confirmed. Please find the booking details attached with this mail.\n\n Booking Confirmation ID: "+bookingConfirmationId+"\nCheck-in Date: "+checkInDate+"\nCheck-out Date: "+checkOutDate+"\nNumber of Guests: "+numberOfGuests;
+            String emailBody = "Dear " + userName + ",\n\nThank you for choosing to book with Hoosier Hotels. We are delighted to confirm your booking. Here are the details of your booking:\n\nBooking Confirmation ID: "+bookingConfirmationId+"\nCheck-in Date: "+checkInDate+"\nCheck-out Date: "+checkOutDate+"\nNumber of Guests: "+numberOfGuests+"\n\nOnce again, thank you for choosing Hoosier Hotels. We are looking forward to providing you with an enjoyable and memorable experience. \n\nBest Regards,\nHoosier Hotels";
             emailService.sendBookingConfirmation(userEmail, emailSubject, emailBody);
             return ResponseEntity.ok("Booking confirmed and email sent.");
         } else {
