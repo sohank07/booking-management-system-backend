@@ -2,7 +2,7 @@ package com.se.bookingmanagementsystembackend.service;
 
 import com.se.bookingmanagementsystembackend.business.domain.user.Booking;
 import com.se.bookingmanagementsystembackend.business.domain.user.Payment;
-import com.se.bookingmanagementsystembackend.handler.ResourceNotFoundException;
+import com.se.bookingmanagementsystembackend.apis.handler.ResourceNotFoundException;
 import com.se.bookingmanagementsystembackend.repository.PaymentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -2,7 +2,7 @@ package com.se.bookingmanagementsystembackend.apis;
 
 import com.se.bookingmanagementsystembackend.business.domain.user.Booking;
 import com.se.bookingmanagementsystembackend.business.domain.user.Hotel;
-import com.se.bookingmanagementsystembackend.handler.HotelAlreadyExistsException;
+import com.se.bookingmanagementsystembackend.apis.handler.HotelAlreadyExistsException;
 import com.se.bookingmanagementsystembackend.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/hotels")

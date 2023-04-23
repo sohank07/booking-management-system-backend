@@ -2,10 +2,9 @@ package com.se.bookingmanagementsystembackend.service;
 
 import com.se.bookingmanagementsystembackend.business.domain.user.Booking;
 import com.se.bookingmanagementsystembackend.business.domain.user.Hotel;
-import com.se.bookingmanagementsystembackend.handler.HotelAlreadyExistsException;
+import com.se.bookingmanagementsystembackend.apis.handler.HotelAlreadyExistsException;
 import com.se.bookingmanagementsystembackend.repository.HotelRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
