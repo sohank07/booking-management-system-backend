@@ -74,8 +74,13 @@ public class BookingServiceImplementation implements BookingService{
             List<String> userDetails = getUserDetails(userId);
             String userEmail = userDetails.get(0);
             String userName = userDetails.get(1);
+
             String emailSubject = "Booking Confirmation";
-            String emailBody = "Dear " + userName + ",\n\nYour booking has been confirmed.";
+            LocalDate checkInDate = booking.getCheckInDate();
+            LocalDate checkOutDate = booking.getCheckOutDate();
+            int numberOfGuests = booking.getNumGuests();
+            Long bookingConfirmationId = booking.getId();
+            String emailBody = "Dear " + userName + ",\n\nYour booking has been confirmed. Please find the booking details attached with this mail.\n\n Booking Confirmation ID: "+bookingConfirmationId+"\nCheck-in Date: "+checkInDate+"\nCheck-out Date: "+checkOutDate+"\nNumber of Guests: "+numberOfGuests;
             emailService.sendBookingConfirmation(userEmail, emailSubject, emailBody);
             return ResponseEntity.ok("Booking confirmed and email sent.");
         } else {
