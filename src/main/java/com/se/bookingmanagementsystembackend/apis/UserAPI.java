@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/users/")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserAPI {
 
     private UserService userService;

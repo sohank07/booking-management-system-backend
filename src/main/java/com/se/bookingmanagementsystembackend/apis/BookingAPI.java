@@ -17,6 +17,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/hotels")
+@CrossOrigin(origins = "http://localhost:3000")
 public class BookingAPI {
 
     @Autowired
