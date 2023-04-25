@@ -12,8 +12,8 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/users/")
-//@CrossOrigin(origins = "http://localhost:3000")
-@CrossOrigin(origins = "https://hoosierhotels.netlify.app/")
+@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "https://hoosierhotels.netlify.app/")
 public class UserAPI {
 
     private UserService userService;
