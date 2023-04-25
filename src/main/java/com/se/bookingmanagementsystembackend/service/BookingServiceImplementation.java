@@ -66,6 +66,7 @@ public class BookingServiceImplementation implements BookingService{
 
             bookingRepository.save(booking);
 
+            String hotelName = hotel.getHotelName();
             LocalDateTime currentDate = LocalDateTime.now();
             BigDecimal amount = BigDecimal.valueOf(hotel.getPriceRange() * (int)Math.ceil(booking.getNumGuests()/2.0));
             paymentService.createPayment(booking, amount, currentDate, true);
@@ -80,7 +81,7 @@ public class BookingServiceImplementation implements BookingService{
             LocalDate checkOutDate = booking.getCheckOutDate();
             int numberOfGuests = booking.getNumGuests();
             Long bookingConfirmationId = booking.getId();
-            String emailBody = "Dear " + userName + ",\n\nThank you for choosing to book with Hoosier Hotels. We are delighted to confirm your booking. Here are the details of your booking:\n\nBooking Confirmation ID: "+bookingConfirmationId+"\nCheck-in Date: "+checkInDate+"\nCheck-out Date: "+checkOutDate+"\nNumber of Guests: "+numberOfGuests+"\n\nOnce again, thank you for choosing Hoosier Hotels. We are looking forward to providing you with an enjoyable and memorable experience. \n\nBest Regards,\nHoosier Hotels";
+            String emailBody = "Dear " + userName + ",\n\nThank you for choosing to book with Hoosier Hotels. We are delighted to confirm your booking.\n\nHere are the details of your booking:\nBooking Confirmation ID: "+bookingConfirmationId+"\nHotel Name: "+hotelName+"\nCheck-in Date: "+checkInDate+"\nCheck-out Date: "+checkOutDate+"\nNumber of Guests: "+numberOfGuests+"\n\nOnce again, thank you for choosing Hoosier Hotels. We are looking forward to providing you with an enjoyable and memorable experience. \n\nBest Regards,\nHoosier Hotels";
             emailService.sendBookingConfirmation(userEmail, emailSubject, emailBody);
             return ResponseEntity.ok("Booking confirmed and email sent.");
         } else {
