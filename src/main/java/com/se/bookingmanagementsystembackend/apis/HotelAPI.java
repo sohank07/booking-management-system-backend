@@ -14,7 +14,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/hotels")
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://hoosierhotels.netlify.app/")
 public class HotelAPI {
 
     @Autowired
