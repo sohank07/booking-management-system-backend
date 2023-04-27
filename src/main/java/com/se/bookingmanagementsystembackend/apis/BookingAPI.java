@@ -17,8 +17,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/hotels")
-@CrossOrigin(origins = "http://localhost:3000")
-//@CrossOrigin(origins = "https://hoosierhotels.netlify.app/")
+//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://hoosierhotels.netlify.app/")
 public class BookingAPI {
 
     @Autowired
